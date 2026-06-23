@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valeo Health — KSA Roster</title>
+<title>Valeo Health — KSA Operations</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23006C35'/><text y='.9em' font-size='70' font-weight='800' fill='white' x='15'>K</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -169,6 +169,70 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-
   margin-left:auto;flex-wrap:wrap;
 }
 .rl-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:2px}
+/* ── Tabs ── */
+.main-tabs{background:var(--bg2);border-bottom:2px solid var(--border);padding:0 20px;display:flex;gap:0}
+.main-tab{padding:12px 18px;font-size:12px;font-weight:500;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;background:none;border-left:none;border-right:none;border-top:none;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px}
+.main-tab:hover{color:var(--text)}
+.main-tab.active{color:var(--ksa-green);border-bottom-color:var(--ksa-green);font-weight:600}
+.page{display:none}.page.active{display:block}
+/* ── Calendar ── */
+.cg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;padding:20px}
+.cg-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:all .2s;position:relative}
+.cg-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0}
+.cg-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 4px 16px var(--shadow)}
+.cg-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.cg-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+.cg-name{font-size:12px;font-weight:600;line-height:1.3}
+.cg-hc-label{font-size:10px;color:var(--text2);margin-top:1px}
+.cg-stats{display:flex;gap:5px;margin-bottom:10px}
+.cg-stat{flex:1;background:var(--bg3);border-radius:5px;padding:5px;text-align:center}
+.stat-n{font-size:15px;font-weight:700;font-family:monospace;line-height:1}
+.stat-l{font-size:9px;color:var(--text2);margin-top:1px;text-transform:uppercase}
+.stat-n.duty{color:var(--duty)}.stat-n.off{color:var(--off)}.stat-n.sick{color:var(--sick)}
+.cg-view-btn{width:100%;padding:6px;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--text2);font-size:11px;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;text-align:center}
+.cg-view-btn:hover{border-color:var(--ksa-green);color:var(--ksa-green)}
+.hc-section{margin-bottom:24px;padding:0 20px}
+.hc-section-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.hc-color-bar{width:4px;height:20px;border-radius:2px;flex-shrink:0}
+.hc-section-name{font-size:14px;font-weight:600}
+.hc-section-count{font-size:11px;color:var(--text2);background:var(--bg3);padding:2px 8px;border-radius:10px;font-family:monospace}
+/* CG Calendar view */
+.cg-cal-view{display:none;padding:20px}.cg-cal-view.active{display:block}
+.cg-cal-topbar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.back-btn{width:34px;height:34px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .15s;flex-shrink:0}
+.back-btn:hover{border-color:var(--ksa-green);color:var(--ksa-green)}
+.cg-cal-title{font-size:18px;font-weight:700;letter-spacing:-.3px}
+.cg-cal-sub{font-size:11px;color:var(--text2);margin-top:2px}
+.cal-nav{display:flex;align-items:center;gap:6px;margin-left:auto}
+.cal-nav-btn{width:30px;height:30px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s}
+.cal-nav-btn:hover{border-color:var(--ksa-green);color:var(--ksa-green)}
+.cal-today-btn{padding:0 12px;width:auto;font-size:11px;font-family:'Inter',sans-serif;font-weight:500;height:30px}
+.cal-month-label{font-size:13px;font-weight:600;min-width:130px;text-align:center}
+.cal-wrap{overflow-x:auto}
+.cal-table{min-width:900px;width:100%;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.cal-head{display:grid;grid-template-columns:repeat(7,1fr);background:var(--bg3);border-bottom:1px solid var(--border)}
+.cal-dow{padding:8px 4px;text-align:center;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);border-right:1px solid var(--border)}
+.cal-dow:last-child{border-right:none}
+.cal-body{display:grid;grid-template-columns:repeat(7,1fr)}
+.cal-cell{min-height:96px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:7px;background:var(--bg2);cursor:pointer;transition:background .1s}
+.cal-cell:hover{background:var(--bg3)}
+.cal-cell:nth-child(7n){border-right:none}
+.cal-cell.other{background:var(--bg);opacity:.5}
+.cal-cell.today{background:rgba(0,108,53,.06)}
+.cal-cell.today .day-num{background:var(--ksa-green);color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.day-num{font-size:11px;font-weight:500;font-family:monospace;color:var(--text2);margin-bottom:5px;width:22px;height:22px;display:flex;align-items:center;justify-content:center}
+.cal-ev{font-size:10px;padding:3px 6px;border-radius:4px;margin-bottom:3px;border-left:3px solid transparent;line-height:1.5;cursor:pointer;word-break:break-word}
+.cal-ev:hover{opacity:.75}
+.cal-ev.duty{background:rgba(196,167,71,.15);color:#C4A747;border-left-color:#C4A747}
+.cal-ev.weekoff{background:rgba(110,118,129,.15);color:#8b949e;border-left-color:var(--off)}
+.cal-ev.sick{background:rgba(248,81,73,.15);color:#f85149;border-left-color:var(--absent)}
+.cal-ev.holiday{background:rgba(196,167,71,.12);color:var(--ksa-gold);border-left-color:var(--ksa-gold)}
+.cal-ev.cancelled{background:rgba(110,118,129,.1);color:var(--text3);border-left-color:var(--border)}
+.cal-ev.manual{background:rgba(168,85,247,.15);color:#a855f7;border-left-color:#a855f7}
+.cal-ev.off-day{background:rgba(110,118,129,.15);color:#8b949e;border-left-color:var(--off)}
+.cal-ev.unpaid{background:rgba(210,153,34,.15);color:#d29922;border-left-color:var(--sick)}
+.roster-wrap{overflow:auto;max-height:calc(100vh - 220px)}
+
 
 /* ── Roster Table ── */
 .roster-wrap{overflow:auto;max-height:calc(100vh - 180px)}
@@ -371,7 +435,7 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-
   </div>
 </div>
 
-<!-- ── KSA STATS BAR ── -->
+<!-- ── STATS BAR ── -->
 <div class="ksa-stats-bar" id="ksa-stats-bar">
   <div class="ksa-kpi"><div class="ksa-kpi-val" id="stat-total-cg">—</div><div class="ksa-kpi-lbl">Caregivers</div></div>
   <div class="ksa-divider"></div>
@@ -384,37 +448,84 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-
   <div style="font-size:11px;color:var(--text3);font-family:monospace;margin-left:4px" id="stat-month-label"></div>
 </div>
 
-<!-- ── ROSTER TOOLBAR ── -->
-<div class="roster-toolbar">
-  <button class="roster-nav-btn" onclick="rosterPrevMonth()">‹</button>
-  <span class="roster-month-label" id="roster-month-label"></span>
-  <button class="roster-nav-btn" onclick="rosterNextMonth()">›</button>
-  <select class="roster-hc-filter" id="roster-hc-filter" onchange="renderRoster()">
-    <option value="">All Homecare</option>
-  </select>
-  <select class="roster-hc-filter" id="roster-city-filter" onchange="renderRoster()">
-    <option value="">All Cities</option>
-    <option value="Riyadh">🏙 Riyadh</option>
-    <option value="Jeddah">🌊 Jeddah</option>
-    <option value="Dammam">🏭 Dammam</option>
-    <option value="Khobar">⛽ Khobar</option>
-  </select>
-  <input class="roster-search" type="text" id="roster-search" placeholder="🔍 Search caregiver..." oninput="renderRoster()">
-  <div class="roster-legend">
-    <span><span class="rl-dot" style="background:#C4A747"></span>Duty</span>
-    <span><span class="rl-dot" style="background:#a855f7"></span>Manual</span>
-    <span><span class="rl-dot" style="background:#1a2018;border:1px solid #444"></span>Week Off</span>
-    <span><span class="rl-dot" style="background:#ef4444"></span>Sick</span>
-    <span><span class="rl-dot" style="background:#475569"></span>Off/Holiday</span>
+<!-- ── TABS ── -->
+<div class="main-tabs">
+  <button class="main-tab active" onclick="switchTab('calendar')">📅 Calendar</button>
+  <button class="main-tab" onclick="switchTab('roster')">🗓 Roster View</button>
+</div>
+
+<!-- ── CALENDAR PAGE ── -->
+<div class="page active" id="page-calendar">
+  <div id="hc-list-view">
+    <div style="padding:12px 20px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <input type="text" id="cg-search-input" placeholder="🔍 Search caregiver..." oninput="filterCGSearch()" style="background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:'Inter',sans-serif;font-size:12px;padding:7px 12px;border-radius:7px;outline:none;width:220px">
+      <select id="cal-hc-filter" onchange="filterCGSearch()" style="background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:'Inter',sans-serif;font-size:12px;padding:7px 12px;border-radius:7px;outline:none;cursor:pointer">
+        <option value="all">All Homecare</option>
+      </select>
+      <span id="cg-result-count" style="font-size:11px;color:var(--text2);font-family:monospace;margin-left:auto"></span>
+    </div>
+    <div id="hc-grid-wrap">
+      <div class="loading-wrap"><div class="loading-flag">🇸🇦</div><div class="spinner"></div><span>Loading...</span></div>
+    </div>
+  </div>
+  <div class="cg-cal-view" id="cg-cal-view">
+    <div class="cg-cal-topbar">
+      <button class="back-btn" onclick="backToList()">←</button>
+      <div style="flex:1">
+        <div class="cg-cal-title" id="cg-cal-title">—</div>
+        <div class="cg-cal-sub" id="cg-cal-sub">—</div>
+      </div>
+      <div class="cal-nav">
+        <button class="cal-nav-btn" onclick="changeCalMo(-1)">‹</button>
+        <div class="cal-month-label" id="cal-mo-label">—</div>
+        <button class="cal-nav-btn cal-today-btn" onclick="goCalToday()">Today</button>
+        <button class="cal-nav-btn" onclick="changeCalMo(1)">›</button>
+      </div>
+    </div>
+    <div class="cal-wrap">
+      <div class="cal-table">
+        <div class="cal-head">
+          <div class="cal-dow">Sun</div><div class="cal-dow">Mon</div><div class="cal-dow">Tue</div>
+          <div class="cal-dow">Wed</div><div class="cal-dow">Thu</div><div class="cal-dow">Fri</div>
+          <div class="cal-dow">Sat</div>
+        </div>
+        <div class="cal-body" id="cal-body"></div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- ── ROSTER ── -->
-<div class="roster-wrap" id="roster-wrap">
-  <div class="loading-wrap">
-    <div class="loading-flag">🇸🇦</div>
-    <div class="spinner"></div>
-    <span>Loading KSA roster...</span>
+<!-- ── ROSTER PAGE ── -->
+<div class="page" id="page-roster">
+  <div class="roster-toolbar">
+    <button class="roster-nav-btn" onclick="rosterPrevMonth()">‹</button>
+    <span class="roster-month-label" id="roster-month-label"></span>
+    <button class="roster-nav-btn" onclick="rosterNextMonth()">›</button>
+    <select class="roster-hc-filter" id="roster-hc-filter" onchange="renderRoster()">
+      <option value="">All Homecare</option>
+    </select>
+    <select class="roster-hc-filter" id="roster-city-filter" onchange="renderRoster()">
+      <option value="">All Cities</option>
+      <option value="Riyadh">🏙 Riyadh</option>
+      <option value="Jeddah">🌊 Jeddah</option>
+      <option value="Dammam">🏭 Dammam</option>
+      <option value="Khobar">⛽ Khobar</option>
+    </select>
+    <input class="roster-search" type="text" id="roster-search" placeholder="🔍 Search caregiver..." oninput="renderRoster()">
+    <div class="roster-legend">
+      <span><span class="rl-dot" style="background:#C4A747"></span>Duty</span>
+      <span><span class="rl-dot" style="background:#a855f7"></span>Manual</span>
+      <span><span class="rl-dot" style="background:#1a2018;border:1px solid #444"></span>Week Off</span>
+      <span><span class="rl-dot" style="background:#ef4444"></span>Sick</span>
+      <span><span class="rl-dot" style="background:#475569"></span>Off/Holiday</span>
+    </div>
+  </div>
+  <div class="roster-wrap" id="roster-wrap">
+    <div class="loading-wrap">
+      <div class="loading-flag">🇸🇦</div>
+      <div class="spinner"></div>
+      <span>Loading KSA roster...</span>
+    </div>
   </div>
 </div>
 
@@ -481,9 +592,9 @@ let _db=null, _session=null;
 
 // ── Auth ─────────────────────────────────────────────────────────
 const USERS=[
-  {username:'valeo_admin', password:'valeo2026',   role:'master'},
-  {username:'ksa_admin',   password:'ksa2026',     role:'master'},
-  {username:'ksa_viewer',  password:'ksaview2026', role:'viewer'},
+  {username:'master',   password:'ksa2026',     role:'master',  homecare:null},
+  {username:'helpful',  password:'helpful2026', role:'hc',      homecare:'Helpful Agency'},
+  {username:'tamaam',   password:'tamaam2026',  role:'hc',      homecare:'Tamaam HC'},
 ];
 
 function doLogin(){
@@ -500,6 +611,13 @@ function doLogin(){
   _session={username:match.username,role:match.role};
   sessionStorage.setItem('ksa_session',JSON.stringify(_session));
   document.getElementById('login-screen').style.display='none';
+  // Show user badge
+  const hdr=document.getElementById('sync-pill').parentElement;
+  const badge=document.createElement('div');
+  badge.style.cssText='font-size:11px;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:6px';
+  const icon=_session.role==='master'?'👑':('🏥');
+  badge.innerHTML=icon+' <b style="color:#fff">'+_session.username+'</b> <button onclick="doLogout()" style="background:rgba(0,0,0,.3);border:1px solid rgba(196,167,71,.4);border-radius:5px;color:rgba(255,255,255,.7);font-size:10px;padding:2px 8px;cursor:pointer;font-family:Inter,sans-serif">Sign out</button>';
+  hdr.insertBefore(badge,hdr.firstChild);
   initApp();
 }
 
@@ -657,6 +775,7 @@ async function loadData(force=false){
     // Update stats
     updateStatsBar();
     populateFilters();
+    renderHCGrid();
     renderRoster();
 
     setSyncState('ok','Synced '+new Date().toLocaleTimeString());
@@ -709,11 +828,18 @@ function updateStatsBar(){
 
 // ── Populate Filters ─────────────────────────────────────────────
 function populateFilters(){
-  const hcs=[...new Set(rawData.map(r=>r.homecare).filter(Boolean))].sort();
   const sel=document.getElementById('roster-hc-filter');
+  // HC role: lock dropdown to their HC only, hide the select entirely
+  if(_session&&_session.role==='hc'&&_session.homecare){
+    sel.innerHTML=`<option value="${_session.homecare}">${_session.homecare}</option>`;
+    sel.value=_session.homecare;
+    sel.disabled=true;
+    return;
+  }
+  const hcs=[...new Set(rawData.map(r=>r.homecare).filter(Boolean))].sort();
   const cur=sel.value;
   sel.innerHTML='<option value="">All Homecare</option>';
-  hcs.forEach(hc=>{sel.innerHTML+=`<option value="${hc}"${hc===cur?' selected':''}>${hc}</option>`});
+  hcs.forEach(hc=>{sel.innerHTML+=`<option value="${hc}"${hc===cur?' selected':''}>\</option>`});
 }
 
 // ── Roster Render ────────────────────────────────────────────────
@@ -736,7 +862,10 @@ function renderRoster(){
   const dates=[];
   for(let d=1;d<=dim;d++) dates.push(year+'-'+pad(month+1)+'-'+pad(d));
 
-  const filterHC=document.getElementById('roster-hc-filter').value;
+  // HC role: always force to session homecare, ignore dropdown
+  const filterHC=(_session&&_session.role==='hc'&&_session.homecare)
+    ? _session.homecare
+    : document.getElementById('roster-hc-filter').value;
   const filterCity=(document.getElementById('roster-city-filter')||{}).value||'';
   const searchQ=((document.getElementById('roster-search')||{}).value||'').toLowerCase();
 
@@ -910,7 +1039,12 @@ function saveCGSettings(){
 let ovCG='',ovDate='',ovType='';
 
 function openOvModal(cg,date){
-  if(!_session||_session.role==='viewer'){return;} // viewers can't edit
+  if(!_session){return;}
+  // HC users can only edit their own caregivers
+  if(_session.role==='hc'&&_session.homecare){
+    const cgHC=(rawData.find(r=>r.caregiver===cg)||{}).homecare||'';
+    if(cgHC!==_session.homecare)return;
+  }
   ovCG=cg;ovDate=date;ovType='';
   document.querySelectorAll('.ov-type-btn').forEach(b=>b.classList.remove('selected'));
   document.getElementById('ov-note').value='';
@@ -948,13 +1082,13 @@ async function saveOverride(){
   }
   const key=ovCG+'|'+ovDate;
   overrides[key]=payload;
-  saveLocalCache();applyOverrides();renderRoster();closeOvModal();
+  saveLocalCache();applyOverrides();renderRoster();if(activeCG)renderCalendar();closeOvModal();
   await persistWrite('ksa_override',key,payload);
 }
 async function clearOverride(){
   const key=ovCG+'|'+ovDate;
   delete overrides[key];
-  saveLocalCache();applyOverrides();renderRoster();closeOvModal();
+  saveLocalCache();applyOverrides();renderRoster();if(activeCG)renderCalendar();closeOvModal();
   await persistDelete('ksa_override',key);
 }
 
@@ -981,6 +1115,166 @@ function applyOverrides(){
       });
     }
   });
+}
+
+
+// ── Tab switching ────────────────────────────────────────────────
+function switchTab(tab){
+  document.querySelectorAll('.main-tab').forEach(b=>b.classList.toggle('active',b.textContent.toLowerCase().includes(tab==='calendar'?'calendar':'roster')));
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+tab).classList.add('active');
+  if(tab==='roster') renderRoster();
+  if(tab==='calendar') renderHCGrid();
+}
+
+// ── Calendar CG Grid ─────────────────────────────────────────────
+function renderHCGrid(){
+  const now=new Date();const yr=now.getFullYear(),mo=now.getMonth();
+  // respect HC filter for HC role
+  const sessionHC=(_session&&_session.role==='hc')?_session.homecare:null;
+  const hcs=[...new Set(rawData.map(r=>r.homecare).filter(Boolean))].filter(h=>!sessionHC||h===sessionHC).sort();
+  // populate cal HC filter
+  const calHCSel=document.getElementById('cal-hc-filter');
+  if(calHCSel){
+    const cur=calHCSel.value;
+    calHCSel.innerHTML='<option value="all">All Homecare</option>';
+    hcs.forEach(h=>calHCSel.innerHTML+=`<option value="${h}"${h===cur?' selected':''}>${h}</option>`);
+    if(sessionHC){calHCSel.value=sessionHC;calHCSel.disabled=true;}
+  }
+  let html='';
+  hcs.forEach(hc=>{
+    const col=hcColor(hc);
+    const cgs=[...new Set(rawData.filter(r=>r.homecare===hc).map(r=>r.caregiver))].filter(Boolean).sort();
+    html+=`<div class="hc-section">
+      <div class="hc-section-header">
+        <div class="hc-color-bar" style="background:${col}"></div>
+        <div class="hc-section-name">${hc}</div>
+        <div class="hc-section-count">${cgs.length} caregivers</div>
+      </div>
+      <div class="cg-grid" style="padding:0">`;
+    cgs.forEach(cg=>{
+      const recs=allData.filter(r=>r.caregiver===cg&&r.homecare===hc);
+      const moRecs=recs.filter(r=>{const d=parseD(r.date);return d&&d.y===yr&&d.m===mo;});
+      const duty=moRecs.filter(r=>!['cancelled','weekoff','sick','off','holiday','unpaid','removed'].includes((r.status||'').toLowerCase().replace(/\s+/g,''))).length;
+      const off=moRecs.filter(r=>['weekoff','off'].includes((r.status||'').toLowerCase().replace(/\s+/g,''))).length;
+      const sick=moRecs.filter(r=>(r.status||'').toLowerCase()==='sick').length;
+      html+=`<div class="cg-card" onclick="openCGCal('${cg.replace(/'/g,"\'")}','${hc.replace(/'/g,"\'")}')">
+        <style>.cg-card:has([data-id="${cg}"])::before{background:${col}}</style>
+        <div class="cg-top">
+          <div class="cg-avatar" style="background:${col}">${initials(cg)}</div>
+          <div><div class="cg-name">${cg}</div><div class="cg-hc-label">${hc}</div></div>
+        </div>
+        <div class="cg-stats">
+          <div class="cg-stat"><div class="stat-n duty">${duty}</div><div class="stat-l">Duty</div></div>
+          <div class="cg-stat"><div class="stat-n off">${off}</div><div class="stat-l">Off</div></div>
+          <div class="cg-stat"><div class="stat-n sick">${sick}</div><div class="stat-l">Sick</div></div>
+        </div>
+        <div class="cg-view-btn">View Calendar →</div>
+      </div>`;
+    });
+    html+='</div></div>';
+  });
+  document.getElementById('hc-grid-wrap').innerHTML=html||'<div style="padding:40px;text-align:center;color:var(--text2)">No caregivers found</div>';
+  document.getElementById('cg-result-count').textContent=[...new Set(rawData.filter(r=>!sessionHC||r.homecare===sessionHC).map(r=>r.caregiver))].filter(Boolean).length+' caregivers';
+}
+
+function filterCGSearch(){
+  const q=(document.getElementById('cg-search-input').value||'').toLowerCase();
+  const hcF=document.getElementById('cal-hc-filter').value;
+  document.querySelectorAll('.hc-section').forEach(sec=>{
+    const hcName=sec.querySelector('.hc-section-name')?.textContent||'';
+    const hcMatch=hcF==='all'||hcName===hcF;
+    let vis=0;
+    sec.querySelectorAll('.cg-card').forEach(card=>{
+      const name=card.querySelector('.cg-name')?.textContent.toLowerCase()||'';
+      const show=hcMatch&&(!q||name.includes(q));
+      card.style.display=show?'':'none';
+      if(show)vis++;
+    });
+    sec.style.display=vis>0?'':'none';
+  });
+}
+
+// ── Individual CG Calendar ───────────────────────────────────────
+let activeCG=null,calYear=new Date().getFullYear(),calMo=new Date().getMonth();
+
+function openCGCal(cg,hc){
+  activeCG=cg;
+  calYear=new Date().getFullYear();calMo=new Date().getMonth();
+  document.getElementById('cg-cal-title').textContent=cg;
+  document.getElementById('cg-cal-sub').textContent=hc;
+  document.getElementById('hc-list-view').style.display='none';
+  document.getElementById('cg-cal-view').classList.add('active');
+  renderCalendar();
+}
+
+function backToList(){
+  activeCG=null;
+  document.getElementById('hc-list-view').style.display='block';
+  document.getElementById('cg-cal-view').classList.remove('active');
+}
+
+function changeCalMo(d){calMo+=d;if(calMo>11){calMo=0;calYear++;}if(calMo<0){calMo=11;calYear--;}renderCalendar();}
+function goCalToday(){const n=new Date();calYear=n.getFullYear();calMo=n.getMonth();renderCalendar();}
+
+function renderCalendar(){
+  const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('cal-mo-label').textContent=MONTHS[calMo]+' '+calYear;
+  const today=todayStr();
+  const firstDay=new Date(calYear,calMo,1).getDay();
+  const daysInM=new Date(calYear,calMo+1,0).getDate();
+  const daysInPrev=new Date(calYear,calMo,0).getDate();
+  const recs=allData.filter(r=>r.caregiver===activeCG);
+  const dayMap={};
+  recs.forEach(r=>{const d=parseD(r.date);if(!d||d.y!==calYear||d.m!==calMo)return;if(!dayMap[d.d])dayMap[d.d]=[];dayMap[d.d].push(r);});
+  let html='';
+  const total=Math.ceil((firstDay+daysInM)/7)*7;
+  for(let i=0;i<total;i++){
+    let day,cls='cal-cell',other=false;
+    if(i<firstDay){day=daysInPrev-firstDay+i+1;cls+=' other';other=true;}
+    else if(i>=firstDay+daysInM){day=i-firstDay-daysInM+1;cls+=' other';other=true;}
+    else{
+      day=i-firstDay+1;
+      const cs=calYear+'-'+pad(calMo+1)+'-'+pad(day);
+      if(cs===today)cls+=' today';
+    }
+    const dateStr=!other?calYear+'-'+pad(calMo+1)+'-'+pad(day):'';
+    const evs=(!other&&dayMap[day])||[];
+    let evHtml='';
+    evs.forEach(ev=>{
+      const ov=dateStr?overrides[activeCG+'|'+dateStr]:null;
+      let st=(ev.status||'').toLowerCase().replace(/\s+/g,'');
+      let cls2,lbl;
+      if(ov&&ov.type!=='manual'){
+        cls2=ov.type==='sick'?'sick':ov.type==='off'?'off-day':ov.type==='holiday'?'holiday':ov.type==='unpaid'?'unpaid':'cancelled';
+        lbl=ov.type==='sick'?'🤒 Sick':ov.type==='off'?'Day Off':ov.type==='holiday'?'Holiday':ov.type==='unpaid'?'Unpaid':'Cancelled';
+      } else {
+        cls2=st==='duty'?'duty':st==='weekoff'?'weekoff':st==='sick'?'sick':st==='cancelled'?'cancelled':st==='manual'?'manual':'off-day';
+        if(st==='weekoff')lbl='Week Off';
+        else if(st==='sick')lbl='Sick';
+        else if(st==='cancelled')lbl='Cancelled';
+        else if(st==='manual')lbl=(ev.client_name||'Manual')+(ev.time_start?' · '+ev.time_start:'');
+        else{lbl=ev.client_name?ev.client_name.split(' ')[0]:'Duty';if(ev.time_start)lbl+=' · '+ev.time_start;}
+      }
+      const safeData=encodeURIComponent(JSON.stringify({...ev,override:ov}));
+      evHtml+=`<div class="cal-ev ${cls2}" onclick="openEvModal('${safeData}')">${lbl}</div>`;
+    });
+    // Show standalone overrides (manual on empty days)
+    if(!other&&evs.length===0&&dateStr){
+      const ov=overrides[activeCG+'|'+dateStr];
+      if(ov){
+        if(ov.type==='manual'){evHtml+=`<div class="cal-ev manual">${ov.client_name||'Manual'}${ov.time_start?' · '+ov.time_start:''}</div>`;}
+        else{const cls3={sick:'sick',off:'off-day',holiday:'holiday',unpaid:'unpaid',cancelled:'cancelled'}[ov.type]||'off-day';const lbl3={sick:'🤒 Sick',off:'Day Off',holiday:'Holiday',unpaid:'Unpaid',cancelled:'Cancelled'}[ov.type]||ov.type;evHtml+=`<div class="cal-ev ${cls3}">${lbl3}</div>`;}
+      }
+    }
+    html+=`<div class="${cls}" onclick="${!other&&dateStr?`openOvModal('${activeCG}','${dateStr}')`:''}""><div class="day-num">${day}</div>${evHtml}</div>`;
+  }
+  document.getElementById('cal-body').innerHTML=html;
+}
+
+function openEvModal(safe){
+  // just open override modal for editing
+  try{const ev=JSON.parse(decodeURIComponent(safe));openOvModal(ev.caregiver||activeCG,ev.date);}catch(e){}
 }
 
 // ── Firebase ─────────────────────────────────────────────────────
@@ -1035,7 +1329,7 @@ async function loadOverrides(){
 function startAutoSync(){
   setInterval(async()=>{
     if(!_db||document.hidden)return;
-    await loadOverrides();applyOverrides();renderRoster();
+    await loadOverrides();applyOverrides();renderRoster();renderHCGrid();
   },3*60*1000);
 }
 
@@ -1064,6 +1358,7 @@ function toggleTheme(){
 }
 
 // ── Init ─────────────────────────────────────────────────────────
+function doLogout(){sessionStorage.removeItem('ksa_session');location.reload();}
 function initApp(){
   loadData();
   startAutoSync();
@@ -1072,6 +1367,13 @@ function initApp(){
 // Check existing session
 if(checkSession()){
   document.getElementById('login-screen').style.display='none';
+  // Show user badge
+  const hdr=document.getElementById('sync-pill').parentElement;
+  const badge=document.createElement('div');
+  badge.style.cssText='font-size:11px;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:6px';
+  const icon=_session.role==='master'?'👑':('🏥');
+  badge.innerHTML=icon+' <b style="color:#fff">'+_session.username+'</b> <button onclick="doLogout()" style="background:rgba(0,0,0,.3);border:1px solid rgba(196,167,71,.4);border-radius:5px;color:rgba(255,255,255,.7);font-size:10px;padding:2px 8px;cursor:pointer;font-family:Inter,sans-serif">Sign out</button>';
+  hdr.insertBefore(badge,hdr.firstChild);
   initApp();
 }
 </script>
